@@ -1,5 +1,5 @@
 [package]
-name = "ckb-metrics-runtime"
+name = "born-metrics-runtime"
 version = "0.13.1"
 authors = ["Toby Lawrence <toby@nuclearfurnace.com>", "Nervos Core Dev <dev@nervos.org>"]
 edition = "2018"
