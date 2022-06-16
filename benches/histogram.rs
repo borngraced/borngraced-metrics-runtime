@@ -49,7 +49,7 @@ lazy_static! {
 }
 
 fn bucket_benchmark(c: &mut Criterion) {
-    // Trigger the quanta upkeep thread to spawn and start updating the time.
+    // Trigger the quanta upkeep thread to spawn and start updating the time
     let _handle = &QUANTA_UPKEEP;
 
     c.bench(
