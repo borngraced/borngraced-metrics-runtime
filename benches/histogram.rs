@@ -5,7 +5,7 @@ extern crate criterion;
 extern crate lazy_static;
 
 use criterion::{Benchmark, Criterion, Throughput};
-use ckb_metrics_runtime::data::AtomicWindowedHistogram;
+use born_metrics_runtime::data::AtomicWindowedHistogram;
 use quanta::{Builder as UpkeepBuilder, Clock, Handle as UpkeepHandle};
 use std::time::Duration;
 

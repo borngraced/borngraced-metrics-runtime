@@ -96,6 +96,7 @@ macro_rules! gauge {
     };
 }
 
+use crate::recorder::__private_api_record_histogram;
 /// Records a timing.
 ///
 /// This will register an histogram with the given name, if it does not already
@@ -169,10 +170,12 @@ macro_rules! gauge {
 ///
 /// [`AsNanoseconds`]: https://docs.rs/metrics-core/0.5/metrics_core/trait.AsNanoseconds.html
 #[macro_export]
+/// timing
 macro_rules! timing {
     ($name:expr, $value:expr) => {
-        if let Some(recorder) = $crate::try_recorder() {
-            $crate::__private_api_record_histogram(recorder, $crate::Key::from_name($name), $value);
+        use metrics::try_recorder;
+        if let Some(recorder) = $crate::recorder::try_recorder() {
+            $crate::recorder::__private_api_record_histogram(recorder, $crate::recorder::Key::from_name($name), $value);
         }
     };
 

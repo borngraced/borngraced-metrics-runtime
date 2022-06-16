@@ -24,7 +24,7 @@ name = "histogram"
 harness = false
 
 [dependencies]
-metrics = { version = "^0.12"}
+metrics = { version = "^0.19"}
 metrics-util = { version = "0.13" }
 metrics-core = { version = "0.5" }
 arc-swap = "^0.4"

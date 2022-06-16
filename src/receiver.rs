@@ -6,9 +6,9 @@ use crate::{
     registry::{MetricRegistry, ScopeRegistry},
     sink::Sink,
 };
-use metrics::Recorder;
 use metrics_core::Key;
 use quanta::{Builder as UpkeepBuilder, Clock, Handle as UpkeepHandle};
+use crate::recorder::Recorder;
 use std::{cell::RefCell, sync::Arc};
 
 thread_local! {

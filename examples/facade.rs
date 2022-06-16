@@ -1,6 +1,6 @@
 #[macro_use]
 extern crate log;
-extern crate ckb_metrics_runtime as metrics_runtime;
+extern crate born_metrics_runtime as metrics_runtime;
 extern crate env_logger;
 extern crate getopts;
 extern crate hdrhistogram;
@@ -13,7 +13,7 @@ extern crate metrics;
 use atomic_shim::AtomicU64;
 use getopts::Options;
 use hdrhistogram::Histogram;
-use metrics_runtime::{exporters::HttpExporter, observers::JsonBuilder, Receiver};
+use metrics_runtime::{exporters::HttpExporter, observers::JsonBuilder, timing, Receiver};
 use quanta::Clock;
 use std::{
     env,
@@ -29,7 +29,7 @@ const LOOP_SAMPLE: u64 = 1000;
 
 struct Generator {
     t0: Option<u64>,
-    gauge: i64,
+    gauge: f64,
     hist: Histogram<u64>,
     done: Arc<AtomicBool>,
     rate_counter: Arc<AtomicU64>,
@@ -40,7 +40,7 @@ impl Generator {
     fn new(done: Arc<AtomicBool>, rate_counter: Arc<AtomicU64>, clock: Clock) -> Generator {
         Generator {
             t0: None,
-            gauge: 0,
+            gauge: 0.0,
             hist: Histogram::<u64>::new_with_bounds(1, u64::max_value(), 3).unwrap(),
             done,
             rate_counter,
@@ -57,7 +57,7 @@ impl Generator {
                 break;
             }
 
-            self.gauge += 1;
+            self.gauge += 1.0;
 
             let t1 = self.clock.now();
 
