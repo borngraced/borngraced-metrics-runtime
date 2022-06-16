@@ -96,7 +96,7 @@ macro_rules! gauge {
     };
 }
 
-use crate::recorder::__private_api_record_histogram;
+// use crate::recorder::__private_api_record_histogram;
 /// Records a timing.
 ///
 /// This will register an histogram with the given name, if it does not already

@@ -1,3 +1,4 @@
+use crate::recorder::Recorder;
 use crate::{
     builder::{Builder, BuilderError},
     common::Scope,
@@ -8,7 +9,6 @@ use crate::{
 };
 use metrics_core::Key;
 use quanta::{Builder as UpkeepBuilder, Clock, Handle as UpkeepHandle};
-use crate::recorder::Recorder;
 use std::{cell::RefCell, sync::Arc};
 
 thread_local! {
@@ -60,7 +60,7 @@ impl Receiver {
 
     /// Installs this receiver as the global metrics facade.
     pub fn install(self) {
-        // metrics::set_boxed_recorder(Box::new(self)).unwrap();
+        // metrics::set_recorder(Box::new(self)).unwrap();
     }
 
     /// Creates a [`Sink`] bound to this receiver.

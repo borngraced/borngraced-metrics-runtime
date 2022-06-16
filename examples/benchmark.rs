@@ -281,7 +281,7 @@ fn main() {
         nanos_to_readable(snapshot_hist.max())
     );
 
-    // Wait for the producers to finish so we can get their stats too.
+    // Wait for the producers to finish so we can get their stats too
     done.store(true, Ordering::SeqCst);
     for handle in handles {
         let _ = handle.join();
